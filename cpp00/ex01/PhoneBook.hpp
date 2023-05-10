@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 20:20:09 by tas               #+#    #+#             */
-/*   Updated: 2023/04/30 23:20:12 by tas              ###   ########.fr       */
+/*   Updated: 2023/05/10 10:57:53 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ class PhoneBook
         PhoneBook(void);
         ~PhoneBook(void);
 
-    void    PhoneBook::add(Contact *repertory);
+    void    add(Contact *repertory);
+    void    printContact(Contact *repertory, int index);
+    void    printList(Contact *repertory);
+    void    search(Contact *repertory);
 
-    private:
+    // private:
         
         int     index;
         Contact repertory[8];

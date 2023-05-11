@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 20:20:09 by tas               #+#    #+#             */
-/*   Updated: 2023/05/10 10:57:53 by tas              ###   ########.fr       */
+/*   Updated: 2023/05/11 09:18:18 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class PhoneBook
     // private:
         
         int     index;
+        int     flag_full;
         Contact repertory[8];
 };
 

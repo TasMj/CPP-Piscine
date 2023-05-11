@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:20:46 by tas               #+#    #+#             */
-/*   Updated: 2023/05/10 11:09:41 by tas              ###   ########.fr       */
+/*   Updated: 2023/05/11 10:21:46 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ void    PhoneBook::add(Contact *repertory)
     std::string data;
     
     std::cout << "Please enter your information" << std::endl;
-    if (PhoneBook::index >= 8)
+    if (PhoneBook::index == 7)
+    {
+        std::cout << "$$$$$$$$$$$$$\n";
+        // if (PhoneBook::index == 7)
         PhoneBook::index = 0;
+        PhoneBook::flag_full = 1;
+    }
     
     std::cout << "First name: ";
     std::cin >> data;
@@ -59,9 +64,10 @@ void    PhoneBook::add(Contact *repertory)
 
 void    PhoneBook::printContact(Contact *repertory, int index)
 {
+    PhoneBook::index = 0;
     while (PhoneBook::index < index)
         PhoneBook::index++;    
-    std::cout << PhoneBook::index;
+    std::cout << PhoneBook::index + 1;
     std::cout << " | ";
     std::cout << repertory[PhoneBook::index].FirstName;
     std::cout << " | ";
@@ -72,19 +78,27 @@ void    PhoneBook::printContact(Contact *repertory, int index)
 
 void    PhoneBook::printList(Contact *repertory)
 {
+    int saveIndex = PhoneBook::index;
+    if (PhoneBook::flag_full == 1)
+        saveIndex = 8;
     PhoneBook::index = 0;
-    while (PhoneBook::index <= 8)
+    while (PhoneBook::index < saveIndex)
+    {
         printContact(repertory, index);
-    PhoneBook::index++;
+        PhoneBook::index++;
+    }
 }
 
 
 void    PhoneBook::search(Contact *repertory)
 {
-    (void)repertory;
-    // std::int i;
+//1 afficher tous le rep
+//2 demander index
     
-    std::cout << "Please enter the number of the contact to display" << std::endl;
+    // (void)repertory;
+    printList(repertory);
+    // int i = 0;
+    // std::cout << "Please enter the number of the contact to display" << std::endl;
     // std::cout >> i;
     // if (i < 0 || i > 8)
     // {
@@ -93,3 +107,14 @@ void    PhoneBook::search(Contact *repertory)
     // }
     
 }
+
+
+
+/* ______ _                       ______             _    
+| ___ \ |                      | ___ \           | |   
+| |_/ / |__   ___  _ __   ___  | |_/ / ___   ___ | | __
+|  __/| '_ \ / _ \| '_ \ / _ \ | ___ \/ _ \ / _ \| |/ /
+| |   | | | | (_) | | | |  __/ | |_/ / (_) | (_) |   < 
+\_|   |_| |_|\___/|_| |_|\___| \____/ \___/ \___/|_|\_\
+                                                    */    
+                                                       

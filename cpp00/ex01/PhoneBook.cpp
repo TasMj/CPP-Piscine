@@ -6,7 +6,7 @@
 /*   By: tas <tas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:20:46 by tas               #+#    #+#             */
-/*   Updated: 2023/05/15 09:51:38 by tas              ###   ########.fr       */
+/*   Updated: 2023/06/09 11:14:10 by tas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,71 @@ void    PhoneBook::add(Contact *repertory)
 
 void    PhoneBook::printContact(Contact *repertory, int index)
 {
+    int counter;
+    
+    counter = 0;
     PhoneBook::index = 0;
     while (PhoneBook::index < index)
         PhoneBook::index++;    
     std::cout << PhoneBook::index + 1;
-    std::cout << " | ";
-    std::cout << repertory[PhoneBook::index].FirstName;
-    std::cout << " | ";
-    std::cout << repertory[PhoneBook::index].LastName;
-    std::cout << " | ";
-    std::cout << repertory[PhoneBook::index].Nickname << std::endl;
+    std::cout << "         |";
+    while(counter < 9 && repertory[PhoneBook::index].FirstName[counter])
+    {
+        std::cout << repertory[PhoneBook::index].FirstName[counter];
+        counter++;
+        if (counter == 9 && repertory[PhoneBook::index].FirstName[counter])
+        {
+            std::cout << ".";
+            counter++;
+        }
+    }
+    while(counter <= 9)
+    {
+        std::cout << " ";
+        counter++;
+    }
+
+    counter = 0;
+    std::cout << "|";
+
+    while(counter < 9 && repertory[PhoneBook::index].LastName[counter])
+    {
+        std::cout << repertory[PhoneBook::index].LastName[counter];
+        counter++;
+        if (counter == 9 && repertory[PhoneBook::index].LastName[counter])
+        {
+            std::cout << ".";
+            counter++;
+        }
+    }
+    while(counter <= 9)
+    {
+        std::cout << " ";
+        counter++;
+    }
+    std::cout << "|";
+
+    counter = 0;
+    while(counter < 9 && repertory[PhoneBook::index].Nickname[counter])
+    {
+        std::cout << repertory[PhoneBook::index].Nickname[counter];
+        counter++;
+        if (counter == 9 && repertory[PhoneBook::index].Nickname[counter])
+        {
+            std::cout << ".";
+            counter++;
+        }
+    }
+    while(counter <= 9)
+    {
+        std::cout << " ";
+        counter++;
+    }
+    std::cout << "\n";
 }
 
 void    PhoneBook::printList(Contact *repertory)
 {
-    
     int keepIndex = 0;
     
     int saveIndex = PhoneBook::index;
@@ -120,7 +170,6 @@ int	ft_atoi(std::string str)
 	return (res * sign);
 }
 
-
 void    PhoneBook::displayContact(Contact *repertory, int index)
 {
     int keepIndex;
@@ -143,11 +192,11 @@ void    PhoneBook::search(Contact *repertory)
 {
     std::string nb_input;
     int i;
-    
+
     printList(repertory);
     std::cout << "Please enter the number of the contact to display:" << std::endl;
     std::cin >> nb_input;
-    
+
     i = ft_atoi(nb_input);
     if (i <= 0 || i > 8)
     {
@@ -156,15 +205,14 @@ void    PhoneBook::search(Contact *repertory)
     }
     else
     {
-        std::cout << i << std::endl;
         if (i < 0)
         {
             std::cout << "error: index" << std::endl;
             return ;
         }
-        if (i > PhoneBook::index)
+        if (i > PhoneBook::index && PhoneBook::flag_full != 1)
         {
-            std::cout << "Sorr there is only " << PhoneBook::index << " contact(s)" << std::endl;
+            std::cout << "Sorry there is only " << PhoneBook::index << " contact(s)" << std::endl;
             return ;
         }
         displayContact(repertory, i - 1);
